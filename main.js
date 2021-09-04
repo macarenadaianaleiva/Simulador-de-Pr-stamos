@@ -219,7 +219,8 @@ $(".hide").on('click', function() {
 
 const URLGET = "https://www.dolarsi.com/api/api.php?type=valoresprincipales"
 //Agregamos un botón con jQuery
-$("body").prepend('<button id="btn1">Click aquí cotización DOLAR hoy</button>');
+$(".imagen").append('<button id="btn1">Click aquí cotización DOLAR hoy</button>');
+
 //Escuchamos el evento click del botón agregado
 $("#btn1").click(() => { 
     $.get(URLGET, function (respuesta, estado) {
@@ -227,15 +228,22 @@ $("#btn1").click(() => {
             let misDatos = respuesta;
             console.log(respuesta)
             for (const dato of misDatos) {
-              $("body").prepend(`<div id="dolar">
-                                    <h3>Compra ${dato.casa.nombre}</h3>
-                                   <h4>Compra ${dato.casa.compra}</h4>
-                                   <h4>Venta ${dato.casa.venta}</h4>
-                                  </div>`);
-                                                
-            }  
+              $(".imagen").append(`<div class="cerrar"><table id="dolar">
+                                    <tr><td>Compra ${dato.casa.nombre}</td>
+                                   
+                                     <td>Compra ${dato.casa.compra}</td>
+                                  
+                                     <td>Venta ${dato.casa.venta}</td>
+                                   </tr>
+                                   
+                                  </table></div>`);   
+            } 
           }
     });
+    
 })
+
+
+
 
 
